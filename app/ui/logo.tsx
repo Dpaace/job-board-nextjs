@@ -1,6 +1,6 @@
 import { lusitana } from "@/app/ui/fonts";
 import { GlobeAltIcon } from "@heroicons/react/16/solid";
-export default function GemelloLogo() {
+export default function Logo() {
     return (
         <div
             className={`${lusitana.className} flex flex-row items-center leading-none text-white`}

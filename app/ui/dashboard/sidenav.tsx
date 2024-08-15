@@ -1,5 +1,5 @@
 import Link from "next/link";
-import GemelloLogo from "@/app/ui/gemello-logo";
+import Logo from "@/app/ui/logo";
 import NavLinks from "@/app/ui/dashboard/nav-links";
 import { PowerIcon, UserCircleIcon } from "@heroicons/react/16/solid";
 
@@ -10,7 +10,7 @@ export default function SideNav() {
                 href="/"
             >
                 <div className="w-32 text-white md:w-40">
-                    <GemelloLogo />
+                    <Logo />
                 </div>
             </Link>
             <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
