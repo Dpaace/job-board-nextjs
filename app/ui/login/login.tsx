@@ -2,8 +2,14 @@
 
 import Link from "next/link";
 import Image from 'next/image';
+import { useState } from "react";
 
 export default function Login() {
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    }
     return (
         <div className="w-[400px] h-[500px] flex flex-col items-center bg-white rounded-lg">
             <h1 className="font-bold text-2xl mt-4">
@@ -12,9 +18,31 @@ export default function Login() {
             <div className="h-full w-full max-w-xs">
                 <form>
                     <br />
-                    <input type="text" id="email" placeholder="Email" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                    <input type="email" id="email" placeholder="Email" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
                     <br />
-                    <input type="password" id="password" placeholder="Password" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                    {/* <input type="password" id="password" placeholder="Password" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                    <br /> */}
+                    <div className="w-full relative">
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            id="password"
+                            placeholder="Password"
+                            required
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10"
+                        />
+                        <button
+                            type="button"
+                            onClick={togglePasswordVisibility}
+                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                        >
+                            {
+                                showPassword 
+                                ? <Image src="https://img.icons8.com/?size=100&id=7278&format=png&color=000000" alt="Hide" width={25} height={25}/> 
+                                : <Image src="https://img.icons8.com/?size=100&id=986&format=png&color=000000" alt="Show" width={25} height={25}/>
+                            }
+                        </button>
+                    </div>
+
                     <br />
                     <Link href="#" className="underline">Forgot your password?</Link>
                     <br />
