@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Login from "./ui/login/login";
 import Logo from "./ui/logo";
+import Register from "./ui/register/page";
 
 export default function Home() {
   return (
@@ -13,7 +14,10 @@ export default function Home() {
       <div className="flex flex-col h-full w-full items-center justify-start">
         
         <br />
+        <div className="flex gap-5">
         <Login />
+        <Register />
+        </div>
 
       </div>
     </div>

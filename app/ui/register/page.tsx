@@ -1,10 +1,11 @@
 'use client';
 
-import Link from "next/link";
-import Image from 'next/image';
+import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
-export default function Login() {
+
+export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -13,7 +14,7 @@ export default function Login() {
     return (
         <div className="w-[400px] h-[500px] flex flex-col items-center bg-white rounded-lg">
             <h1 className="font-bold text-2xl mt-4">
-                Sign In:
+                Sign Up:
             </h1>
             <div className="h-full w-full max-w-xs">
                 <form>
@@ -36,9 +37,9 @@ export default function Login() {
                             className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                         >
                             {
-                                showPassword 
-                                ? <Image src="https://img.icons8.com/?size=100&id=7278&format=png&color=000000" alt="Hide" width={25} height={25}/> 
-                                : <Image src="https://img.icons8.com/?size=100&id=986&format=png&color=000000" alt="Show" width={25} height={25}/>
+                                showPassword
+                                    ? <Image src="https://img.icons8.com/?size=100&id=7278&format=png&color=000000" alt="Hide" width={25} height={25} />
+                                    : <Image src="https://img.icons8.com/?size=100&id=986&format=png&color=000000" alt="Show" width={25} height={25} />
                             }
                         </button>
                     </div>
@@ -52,7 +53,7 @@ export default function Login() {
                     </button>
                 </form>
                 <br />
-                <p>Don&apos;t have an account yet? <Link href="/ui/register" className="underline">Sign up</Link></p>
+                <p>Don&apos;t have an account yet? <Link href="#" className="underline">Sign up</Link></p>
                 <br />
                 <div className="w-full h-10 flex items-center justify-between">
                     <div className="h-px w-2/5 my-8 bg-black border-0"></div>
@@ -71,5 +72,5 @@ export default function Login() {
                 </button>
             </div>
         </div>
-    );
+    )
 }
