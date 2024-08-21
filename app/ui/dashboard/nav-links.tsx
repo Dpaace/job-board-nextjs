@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 const links = [
     { name: 'Home', href: '/dashboard', icon: HomeIcon },
     { name: 'Categories', href: '/dashboard/categories', icon: NumberedListIcon },
-    { name: 'Jobs', href: '/dashboard/jobs', icon: UserGroupIcon },
+    { name: 'All Spaces', href: '/dashboard/spaces', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {

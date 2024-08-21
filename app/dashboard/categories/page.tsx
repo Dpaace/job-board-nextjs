@@ -33,7 +33,6 @@ export default async function CategoriesPage() {
                             <h2 className="text-2xl font-semibold mb-2 text-center">{category.attributes.name}</h2>
                             <p className="text-gray-500 text-sm text-center">Created: {new Date(category.attributes.createdAt).toLocaleDateString()}</p>
                             <p className="text-gray-500 text-sm text-center">Updated: {new Date(category.attributes.updatedAt).toLocaleDateString()}</p>
-                            <p className="text-gray-500 text-sm text-center">Published: {new Date(category.attributes.publishedAt).toLocaleDateString()}</p>
                         </div>
                     </div>
                 ))}

@@ -7,7 +7,7 @@ export default function Logo() {
         >
             <GlobeAltIcon className="h-12 w-12" />
             <p className="text-[36px]">
-                JobBoard
+                Gemello
             </p>
         </div>
     )
