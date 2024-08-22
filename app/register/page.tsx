@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { headers } from "next/headers";
 
 
 export default function Register() {
@@ -11,6 +12,42 @@ export default function Register() {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     }
+
+    const [message, setMessage] = useState("");
+
+    const userRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setMessage("");
+
+        try {
+            const formData = new FormData(event.currentTarget);
+            const jsonData = Object.fromEntries(formData);
+            console.log(jsonData);
+
+            const reqOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            };
+
+            const req = await fetch('http://localhost:1337/api/auth/local/register', reqOptions);
+            const res = await req.json();
+
+            if (res.error) {
+                setMessage(res.error.message);
+                return;
+            }
+
+            if (res.jwt && res.user) {
+                setMessage('Successfull Registration')
+            }
+        } catch (error) {
+            setMessage("An unexpected error occurred. Please try again later.");
+        }
+    }
+
     return (
         <main className="flex min-h-screen p-6 items-center justify-center gap-20">
             <div className="w-[400px] h-[500px] flex flex-col items-center rounded-lg">
@@ -18,7 +55,7 @@ export default function Register() {
                     Sign Up:
                 </h1>
                 <div className="h-full w-full max-w-xs">
-                    <form>
+                    <form onSubmit={userRegister}>
                         <br />
                         <button type="submit" className="flex items-center justify-center gap-2 bg-blue-500 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5">
                             <Image
@@ -36,12 +73,14 @@ export default function Register() {
                             or
                             <div className="h-px w-2/5 my-8 bg-black border-0"></div>
                         </div>
+                        <input type="text" id="username" name="username" placeholder="Username" required className=" border-b border-black text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        <br />
                         <div className="grid grid-cols-2 gap-3">
-                            <input type="text" id="firstname" placeholder="First Name" required className="border-b border-black text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-                            <input type="text" id="lastname" placeholder="Last Name" required className="border-b border-black text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                            <input type="text" id="firstname" name="firstname" placeholder="First Name" required className="border-b border-black text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                            <input type="text" id="lastname" name="lastname" placeholder="Last Name" required className="border-b border-black text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
                         </div>
                         <br />
-                        <input type="email" id="email" placeholder="Email" required className=" border-b border-black text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        <input type="email" id="email" name="email" placeholder="Email" required className=" border-b border-black text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
                         <br />
                         {/* <input type="password" id="password" placeholder="Password" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
                     <br /> */}
@@ -50,6 +89,7 @@ export default function Register() {
                                 type={showPassword ? 'text' : 'password'}
                                 id="password"
                                 placeholder="Password"
+                                name="password"
                                 required
                                 className="border-b border-black text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10"
                             />
@@ -72,10 +112,8 @@ export default function Register() {
                     </form>
                     <br />
                     <p>Already have an account? <Link href="/" className="underline">Sign In</Link></p>
-                    <br />
-
-                    <br />
-
+                    <br /><br />
+                    <div> {message} </div>
                 </div>
             </div>
             <div className="w-[400px] h-[500px] flex flex-col items-start justify-center">
