@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { headers } from "next/headers";
+import { Metadata } from "next"
+
+
 
 
 export default function Register() {
@@ -41,12 +44,12 @@ export default function Register() {
             }
 
             if (res.jwt && res.user) {
-                setMessage('Successfull Registration')
+                setMessage('Successfull Registration');
             }
         } catch (error) {
             setMessage("An unexpected error occurred. Please try again later.");
-        }
-    }
+        };
+    };
 
     return (
         <main className="flex min-h-screen p-6 items-center justify-center gap-20">
