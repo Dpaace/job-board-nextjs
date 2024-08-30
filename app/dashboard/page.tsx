@@ -50,11 +50,11 @@ export default async function Page() {
 
             <Gemello />
 
-            <div className="flex flex-col items-center justify-center mt-20 space-x-0 space-y-2 md:space-x-2 md:space-y-0 md:flex-row">
+            {/* <div className="flex flex-col items-center justify-center mt-20 space-x-0 space-y-2 md:space-x-2 md:space-y-0 md:flex-row">
                 <Link href="/" className="px-3 py-2 text-indigo-500 border border-indigo-500 border-solid hover:text-black md:w-auto">
                     Home
                 </Link>
-            </div>
+            </div> */}
         </div>
 
 
