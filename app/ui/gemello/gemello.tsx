@@ -234,6 +234,7 @@ export default function Gemello() {
                         </div> */}
                         {/* <OuterApp /> */}
                         <IndexPage />
+                        {/* What is happeing here  */}
 
                     </div>
                 ))}
