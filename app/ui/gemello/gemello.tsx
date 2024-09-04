@@ -116,6 +116,7 @@ import JSZip from 'jszip';
 import { useEffect, useState } from 'react';
 import OuterApp from './outerapp';
 import IndexPage from '.';
+import NewIndexPage from './newindex';
 
 // Define the type for the Gemello data structure
 interface AssetFile {
@@ -235,6 +236,7 @@ export default function Gemello() {
                         {/* <OuterApp /> */}
                         <IndexPage />
                         {/* What is happeing here  */}
+                        {/* <NewIndexPage /> */}
 
                     </div>
                 ))}

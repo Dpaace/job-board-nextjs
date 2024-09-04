@@ -1159,7 +1159,7 @@ const IndexPage = () => {
         };
 
         // Fetch zip and extract files
-        fetchAndExtractZip('http://localhost:1337/uploads/Gemello_local_38550632a8.zip'); // Replace with the actual URL of your zip file
+        fetchAndExtractZip('http://localhost:1337/uploads/Gemello_local_4b4a21174a.zip'); // Replace with the actual URL of your zip file
     }, []);
 
     useEffect(() => {
@@ -1223,13 +1223,26 @@ const IndexPage = () => {
                         };
                     }
 
-                    const contentsBaseURL = extractedFiles.get('Assetbundle/');
+                    console.log("Extracted File",extractedFiles.entries());
+                    console.log("Extracted File Array",Array.from(extractedFiles.entries()));
 
+                    // const contentsBaseURL = extractedFiles.get('Gemello_local/Assetbundle/');
+                    // const contentsBaseURL = extractedFiles.get('Gemello_local/Assetbundle/assetbundle');
+                    const contentsBaseURL = Array.from(extractedFiles.entries()).filter(([key, _]) => key.startsWith('Gemello_local/Assetbundle/')).map(([_, value]) => {
+                        const val =  value.replace('blob:', '');
+                        // const fixedPath = val.replace('3000', '1337');
+
+                        return val;
+                    });
+
+                    
                     console.log('Contents base URL:', contentsBaseURL);
 
 
                     const action = 'StartGetData';
-                    unityInstance.SendMessage('Loader', action, 'http://127.0.0.1:5500/Assetbundle/');
+                    // unityInstance.SendMessage('Loader', action, 'http://127.0.0.1:5500/Assetbundle/');
+                    console.log('Contents base URL:', contentsBaseURL);
+                    unityInstance.SendMessage('Loader', action, contentsBaseURL);
                 })
                 .catch((message: string) => {
                     alert(message);
