@@ -28,27 +28,27 @@ interface Job {
 }
 
 // Fetch job details based on the ID
-async function getJob(id: string): Promise<Job> {
-    const res = await fetch(`http://localhost:1337/api/jobs/${id}?populate=*`);
-    const data = await res.json();
-    return data.data;
-}
+// async function getJob(id: string): Promise<Job> {
+//     const res = await fetch(`http://localhost:1337/api/jobs/${id}?populate=*`);
+//     const data = await res.json();
+//     return data.data;
+// }
 
-async function getJobData(id: string){
-    const res = await fetch(`http://localhost:1337/api/jobs/${id}?populate=*`);
-    const data = await res.json();
-    return data.data;
-}
+// async function getJobData(id: string){
+//     const res = await fetch(`http://localhost:1337/api/jobs/${id}?populate=*`);
+//     const data = await res.json();
+//     return data.data;
+// }
 
 export default async function JobDetailPage({ params }: { params: { id: string } }) {
-    const id = params.id;
-    const job = await getJob(id);
-    const jobdata = await getJobData(id);
+    // const id = params.id;
+    // const job = await getJob(id);
+    // const jobdata = await getJobData(id);
 
     return (
         <section className="prose w-full px-4 py-24 mx-auto max-w-7xl md:w-4/5 ">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="p-6">
+                {/* <div className="p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-4">{job.attributes.title}</h1>
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">Owner: {job.attributes.owner}</h2>
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">Description:</h2>
@@ -65,7 +65,7 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                             className="rounded-lg"
                         />
                     )}
-                </div>
+                </div> */}
             </div>
         </section>
     );
