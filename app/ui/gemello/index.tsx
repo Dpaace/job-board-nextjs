@@ -1223,19 +1223,19 @@ const IndexPage = () => {
                         };
                     }
 
-                    console.log("Extracted File",extractedFiles.entries());
-                    console.log("Extracted File Array",Array.from(extractedFiles.entries()));
+                    console.log("Extracted File", extractedFiles.entries());
+                    console.log("Extracted File Array", Array.from(extractedFiles.entries()));
 
                     // const contentsBaseURL = extractedFiles.get('Gemello_local/Assetbundle/');
                     // const contentsBaseURL = extractedFiles.get('Gemello_local/Assetbundle/assetbundle');
                     const contentsBaseURL = Array.from(extractedFiles.entries()).filter(([key, _]) => key.startsWith('Gemello_local/Assetbundle/')).map(([_, value]) => {
-                        const val =  value.replace('blob:', '');
+                        const val = value.replace('blob:', '');
                         // const fixedPath = val.replace('3000', '1337');
 
                         return val;
                     });
 
-                    
+
                     console.log('Contents base URL:', contentsBaseURL);
 
 
