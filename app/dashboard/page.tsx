@@ -1,30 +1,4 @@
-// import { Metadata } from "next"
-// import Link from "next/link";
-// import NewIndexPage from "../ui/gemello/newindex";
 
-// export const metadata: Metadata = {
-//     title: "Gemello | Dashboard"
-// }
-
-
-// export default async function Page() {
-
-//     // const gemello = await getGemello();
-//     // console.log("Gemello Data", gemello);
-//     return (
-
-//         <div className="flex flex-col items-center">
-//             <h1 className="font-bold text-3xl">
-//                 Dashboard Home Page
-//             </h1>
-
-//             {/* <Gemello /> */}
-//             <NewIndexPage />
-//         </div>
-
-
-//     );
-// }
 
 'use client';
 
@@ -32,6 +6,7 @@ import { Metadata } from "next";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import NewIndexPage from "../ui/gemello/newindex";
+import GHome from "../ui/gemello/ghome";
 
 // Define an interface for Assetbundle
 interface AssetBundle {
@@ -129,6 +104,29 @@ export default function Page() {
         return <div className="text-red-500">{error}</div>; // Display error message
     }
 
+    const handleExtract = async (zipUrl: string, fileName: string) => {
+        try {
+            const response = await fetch('/api/extract-zip', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ zipUrl, fileName }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message); // Show success message
+            } else {
+                alert(data.error); // Show error message
+            }
+        } catch (error) {
+            alert('An error occurred while extracting the zip file.');
+            console.error(error);
+        }
+    };
+
     return (
         <div className="flex flex-col items-center">
             <h1 className="font-bold text-3xl mb-4">
@@ -152,11 +150,16 @@ export default function Page() {
                                 <ul>
                                     {gemello.assetbundle.map((asset) => (
                                         <>
-                                            <li>NAME: {asset.name}</li>
                                             <li key={asset.id}>URL:
                                                 <a href={`http://localhost:1337${asset.url}`} target="_blank" className="text-blue-500 underline">
                                                     {asset.url}
                                                 </a>
+                                                <button
+                                                    onClick={() => handleExtract(`http://localhost:1337${asset.url}`, `extracted_${gemello.id}`)}
+                                                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg"
+                                                >
+                                                    Extract
+                                                </button>
                                             </li>
                                         </>
                                     ))}
@@ -166,7 +169,7 @@ export default function Page() {
                     ))}
                 </div>
             )}
-            <NewIndexPage />
+            <NewIndexPage fileURL="/extracted_26/Assetbundle"/>
             <button
                 onClick={handleLogout}
                 className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg"
