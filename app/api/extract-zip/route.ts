@@ -17,9 +17,9 @@ export async function POST(req: NextRequest) {
         // const buffer = await response.arrayBuffer();
 
         const zip = new AdmZip(buffer);
-        const extractPath = path.join(process.cwd(), 'public', fileName);
+        const extractPath = path.join(process.cwd(), 'public/FileExtracts', fileName);
         zip.extractAllTo(extractPath, true);
-        return NextResponse.json({ message: 'Extraction successful' });
+        return NextResponse.json({ message: 'Extraction successful from NextJs API Call' });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: 'Failed to extract zip file' }, { status: 500 });
