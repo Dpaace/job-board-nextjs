@@ -128,6 +128,18 @@
 // export default NewIndexPage;
 
 
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+
+
 // components/NewIndexPage.tsx
 
 'use client';
@@ -135,7 +147,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 interface NewIndexPageProps {
-    fileURL: string;
+  fileURL: string;
 }
 
 const NewIndexPage: React.FC<NewIndexPageProps> = ({ fileURL }) => {
@@ -156,7 +168,7 @@ const NewIndexPage: React.FC<NewIndexPageProps> = ({ fileURL }) => {
       productVersion: '0.1',
     };
 
-    console.log('Unity config:', config); // Log the Unity config for debugging
+    console.log('Unity config:', config);
 
     if (progressBarRef.current) {
       progressBarRef.current.style.display = 'block';
@@ -164,7 +176,7 @@ const NewIndexPage: React.FC<NewIndexPageProps> = ({ fileURL }) => {
 
     const loaderUrl = '/Gemello/Build/WebGLBuild.loader.js';
 
-    console.log('Loading Unity loader script from:', loaderUrl); // Log loader URL
+    console.log('Loading Unity loader script from:', loaderUrl);
 
     const script = document.createElement('script');
     script.src = loaderUrl;
@@ -244,3 +256,4 @@ const NewIndexPage: React.FC<NewIndexPageProps> = ({ fileURL }) => {
 };
 
 export default NewIndexPage;
+

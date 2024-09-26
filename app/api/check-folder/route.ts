@@ -6,7 +6,7 @@ export async function POST(request: Request) {
     try {
         const { folderName } = await request.json();
 
-        const extractPath = path.join(process.cwd(), 'public', 'FileExtracts', folderName);
+        const extractPath = path.join(process.cwd(), 'public', 'FileExtracts', folderName, 'Assetbundle');
 
         try {
             await fs.access(extractPath);
